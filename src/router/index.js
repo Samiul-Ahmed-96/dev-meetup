@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../components/Home/Home.vue';
 import Meetups from '../components/Meetups/Meetups.vue';
-
+import SingleMeetup from '../components/SingleMeetup/SingleMeetup.vue';
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,6 +15,12 @@ const routes = [
     path: '/meetups',
     name: 'Meetups',
     component: Meetups
+  },
+  {
+    path: '/meetups/:id',
+    name: 'SingleMeetup',
+    props:true,
+    component: SingleMeetup
   },
   
 ]
