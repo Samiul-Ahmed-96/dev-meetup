@@ -22,9 +22,9 @@
     <v-row>
       <v-col v-for="item in meetUps" :key="item.id" md="10" offset-md="1" sm="12">
         <v-card elevation="6" class="mx-auto my-6">
-          <v-img :src="item.src" height="400px"></v-img>
+          <v-img :src="item.imageUrl" height="400px"></v-img>
 
-          <v-card-title> {{ item.name }} </v-card-title>
+          <v-card-title> {{ item.title }} </v-card-title>
           <v-card-subtitle class="pb-0">{{item.time}}
           </v-card-subtitle>
           <v-card-actions>
@@ -46,7 +46,7 @@
             <div v-show="show">
               <v-divider></v-divider>
               <v-card-text class="teal darken-2 rounded white--text">
-                {{ item.des }}
+                {{ item.description }}
               </v-card-text>
             </div>
           </v-expand-transition>

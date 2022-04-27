@@ -68,7 +68,7 @@
         {
           title: "Create meeting",
           icon: "mdi-google-classroom",
-          link: "/meetup/create",
+          link: "/createMeetup",
         },
         { title: "Profile", icon: "mdi-account-circle", link: "/profile" },
         { title: "Register", icon: "mdi-account-plus", link: "/register" },

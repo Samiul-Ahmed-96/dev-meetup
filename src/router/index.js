@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import CreateMeeting from '../components/CreateMeeting/CreateMeeting.vue';
 import Home from '../components/Home/Home.vue';
 import Meetups from '../components/Meetups/Meetups.vue';
 import SingleMeetup from '../components/SingleMeetup/SingleMeetup.vue';
@@ -21,6 +22,11 @@ const routes = [
     name: 'SingleMeetup',
     props:true,
     component: SingleMeetup
+  },
+  {
+    path: '/createMeetup',
+    name: 'CreateMeeting',
+    component: CreateMeeting
   },
   
 ]

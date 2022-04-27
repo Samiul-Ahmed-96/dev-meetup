@@ -17,13 +17,13 @@
           font-weight-bold
         "
       >
-        {{meetUp.name}}
+        {{meetUp.title}}
       </h1>
         <v-card class="mx-auto teal darken-2 white--text">
           <v-img
             class="white--text align-end"
             height="50vh"
-            :src="meetUp.src"
+            :src="meetUp.imageUrl"
           >
             <v-card-title>{{meetUp.name}}</v-card-title>
           </v-img>
@@ -31,8 +31,10 @@
           <v-card-subtitle class="pb-4 white--text">ID: {{meetUp.id}} </v-card-subtitle>
 
           <v-card-text>
-
-            <h2 class="white--text font-weight-regular">{{meetUp.des}}</h2>
+            <h2 class="white--text font-weight-regular">{{meetUp.description}}</h2>
+          </v-card-text>
+          <v-card-text>
+            <h2 class="white--text font-weight-regular">Meetup date : {{meetUp.date}}</h2>
           </v-card-text>
 
           <v-card-actions>
