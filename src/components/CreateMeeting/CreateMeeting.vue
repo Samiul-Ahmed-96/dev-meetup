@@ -123,6 +123,7 @@ export default {
         date: this.date,
       };
       this.$store.dispatch("createMeetup", meetUpdata);
+      this.$router.push("/meetups");
     },
   },
   computed: {
