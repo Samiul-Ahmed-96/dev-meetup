@@ -22,12 +22,13 @@
     name:'home-view',
     data () {
       return {
+        user:this.$store.state.user.email,
       }
     },
     computed:{
         meetups(){
             return this.$store.getters.featuredMeetUp
-        }
+        },
     }
   }
 </script>

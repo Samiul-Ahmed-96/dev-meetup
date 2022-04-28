@@ -21,6 +21,7 @@
     </div>
     <v-row>
       <v-col md="8" sm="12" offset-md="2">
+        <div v-if="error"  class="errors"><app-alert @dismissed="onDismissed" :text="error.message"></app-alert></div>
         <form @submit.prevent="onRegister">
           <div>
             <v-text-field
@@ -47,6 +48,7 @@
               type="password"
               hide-details="auto"
               v-model="passwordConfirm"
+              :rules="[comparePassword]"
             ></v-text-field>
           </div>
           <!-- <v-btn  outlined text class="mt-8  teal--text d-block" to="/login" 
@@ -64,18 +66,45 @@
 <script>
 export default {
   name: "Register-area",
-  data(){
-      return{
-          email:'',
-          password:'',
-          passwordConfirm:''
-      }
+  data() {
+    return {
+      email: "",
+      password: "",
+      passwordConfirm: "",
+    };
   },
-  methods:{
-      onRegister(){
-          console.log(this.email,this.password,this.passwordConfirm);
+  computed: {
+    comparePassword() {
+      return this.password !== this.passwordConfirm
+        ? "Password do not match"
+        : "";
+    },
+    user() {
+      return this.$store.getters.user;
+    },
+    error(){
+        return this.$store.getters.error;
+    }
+  },
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push("/");
       }
-  }
+    },
+  },
+  methods: {
+    onRegister() {
+      this.$store.dispatch("registerUser", {
+        email: this.email,
+        password: this.password,
+      });
+    },
+    onDismissed(){
+        console.log("Dismissed Alert");
+        this.$store.dispatch('clearError');
+    }
+  },
 };
 </script>
 

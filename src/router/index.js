@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import CreateMeeting from '../components/CreateMeeting/CreateMeeting.vue';
 import Home from '../components/Home/Home.vue';
+import Login from '../components/Login/Login.vue';
 import Meetups from '../components/Meetups/Meetups.vue';
 import Register from '../components/Register/Register.vue';
 import SingleMeetup from '../components/SingleMeetup/SingleMeetup.vue';
@@ -33,6 +34,11 @@ const routes = [
     path: '/register',
     name: 'register',
     component: Register
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   
 ]

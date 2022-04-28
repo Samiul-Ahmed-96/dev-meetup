@@ -1,10 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import {
+  createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword
+} from "firebase/auth";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: null,
+    loading: false,
+    authError : null,
+    error:null,
     loadedMeetups:[
       {
         title: "New York City",
@@ -68,12 +75,34 @@ export default new Vuex.Store({
           return meetUp.id === meetUpId;
         })
       }
+    },
+    user(state){
+      return state.user;
+    },
+    error(state){
+      return state.error
+    },
+    loading(state){
+      return state.loading
     }
   },
   mutations: {
     createMeetup(state,payload){
       state.loadedMeetups.push(payload);
+    },
+    setUser(state,payload){
+      state.user = payload;
+    },
+    setLoading(state,payload){
+      state.loading = payload;
+    },
+    setError(state,payload){
+      state.error = payload;
+    },
+    clearError(state ){
+      state.error = null
     }
+    
   },
   actions: {
     createMeetup({commit},payload){
@@ -88,6 +117,48 @@ export default new Vuex.Store({
       }
       commit('createMeetup',newMeetup);
       alert('Added');
+    },
+    registerUser({commit},payload){
+      commit('setLoading',true)
+      commit('clearError')
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, payload.email, payload.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          commit('setLoading',false)
+          const newUser = {
+            id: user.uid,
+            email:user.email
+          };
+          commit("setUser", newUser);
+          console.log("user",user)
+          console.log("New user",newUser)
+          return user;
+        })
+        .catch((error) => {
+          console.log(error.message);
+          commit('setLoading',false)
+          commit('setError',error)
+        });
+    },
+    loginUser({commit},payload){
+      commit('setLoading',true)
+      commit('clearError')
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, payload.email,payload.password)
+      .then((user) => {
+        commit('setLoading',false)
+        const newUser = {
+          id: user.uid,
+          email:user.email
+        };
+        commit("setUser", newUser);
+        // ...
+      })
+      .catch((error) => {
+        commit('setLoading',false)
+        commit('setError',error)
+      });
     }
   },
   modules: {

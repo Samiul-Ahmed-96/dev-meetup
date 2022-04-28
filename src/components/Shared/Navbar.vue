@@ -25,6 +25,7 @@
           {{ item.title }}</v-btn
         >
       </v-toolbar-items>
+      
 
     </v-app-bar>
 
@@ -60,7 +61,12 @@
   computed: {
     menuItems() {
       let menuItems = [
-        {
+        { title: "Register", icon: "mdi-account-plus", link: "/register" },
+        { title: "Login", icon: "mdi-login", link: "/login" },
+      ];
+      if(this.userAuthenticated){
+        menuItems = [
+                  {
           title: "All Meetups",
           icon: "mdi-account-supervisor",
           link: "/meetups",
@@ -71,12 +77,15 @@
           link: "/createMeetup",
         },
         { title: "Profile", icon: "mdi-account-circle", link: "/profile" },
-        { title: "Register", icon: "mdi-account-plus", link: "/register" },
-        { title: "Login", icon: "mdi-login", link: "/login" },
-      ];
+        ]
+      }
       return menuItems;
     },
+    userAuthenticated(){
+      return this.$store.getters.user !==  null && this.$store.getters.user !== undefined
+    }
   },
+
   watch: {
     group() {
       this.drawer = false;
