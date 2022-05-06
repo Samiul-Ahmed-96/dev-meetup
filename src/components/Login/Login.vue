@@ -43,7 +43,13 @@
           <!-- <v-btn  outlined text class="mt-8  teal--text d-block" to="/login" 
             >Already Register ?</v-btn
           > -->
-          <v-btn type="submit" large class="mt-4 teal darken-2 white--text"
+          <v-btn
+            type="submit"
+            :loading="loading"
+            :disabled="loading"
+            @click="loader = 'loading'"
+            large
+            class="mt-4 teal darken-2 white--text"
             >Login</v-btn
           >
         </form>
@@ -55,29 +61,35 @@
 <script>
 export default {
   name: "Login-area",
-  data(){
-      return{
-          email:'',
-          password:'',
-      }
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
   },
-  computed:{
-      user(){
-          return this.$store.getters.user
-      }
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    },
+    loading() {
+      return this.$store.getters.loading;
+    },
   },
-  watch:{
-      user(value){
-          if(value !== null && value !== undefined){
-              this.$router.push("/")
-          }
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push("/");
       }
+    },
   },
-  methods:{
-      onLogin(){
-          this.$store.dispatch('loginUser',{email:this.email,password:this.password})
-      }
-  }
+  methods: {
+    onLogin() {
+      this.$store.dispatch("loginUser", {
+        email: this.email,
+        password: this.password,
+      });
+    },
+  },
 };
 </script>
 

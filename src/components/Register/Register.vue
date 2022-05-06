@@ -21,7 +21,9 @@
     </div>
     <v-row>
       <v-col md="8" sm="12" offset-md="2">
-        <div v-if="error"  class="errors"><app-alert @dismissed="onDismissed" :text="error.message"></app-alert></div>
+        <div v-if="error" class="errors">
+          <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+        </div>
         <form @submit.prevent="onRegister">
           <div>
             <v-text-field
@@ -54,7 +56,14 @@
           <!-- <v-btn  outlined text class="mt-8  teal--text d-block" to="/login" 
             >Already Register ?</v-btn
           > -->
-          <v-btn type="submit" large class="mt-4 teal darken-2 white--text"
+          <v-btn
+            type="submit"
+            :loading="loading"
+            :disabled="loading"
+            color="secondary"
+            @click="loader = 'loading'"
+            large
+            class="mt-4 teal darken-2 white--text"
             >Register</v-btn
           >
         </form>
@@ -82,9 +91,12 @@ export default {
     user() {
       return this.$store.getters.user;
     },
-    error(){
-        return this.$store.getters.error;
-    }
+    error() {
+      return this.$store.getters.error;
+    },
+    loading() {
+      return this.$store.getters.loading;
+    },
   },
   watch: {
     user(value) {
@@ -100,10 +112,10 @@ export default {
         password: this.password,
       });
     },
-    onDismissed(){
-        console.log("Dismissed Alert");
-        this.$store.dispatch('clearError');
-    }
+    onDismissed() {
+      console.log("Dismissed Alert");
+      this.$store.dispatch("clearError");
+    },
   },
 };
 </script>
