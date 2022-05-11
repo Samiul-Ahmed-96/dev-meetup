@@ -21,6 +21,9 @@
     </div>
     <v-row>
       <v-col md="8" sm="12" offset-md="2">
+                <div v-if="error" class="errors">
+          <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+        </div>
         <form @submit.prevent="onLogin">
           <div>
             <v-text-field
@@ -74,6 +77,9 @@ export default {
     loading() {
       return this.$store.getters.loading;
     },
+    error(){
+      return this.$store.getters.error
+    }
   },
   watch: {
     user(value) {
@@ -88,6 +94,10 @@ export default {
         email: this.email,
         password: this.password,
       });
+    },
+    onDismissed() {
+      console.log("Dismissed Alert");
+      this.$store.dispatch("clearError");
     },
   },
 };

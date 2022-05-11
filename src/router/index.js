@@ -4,6 +4,7 @@ import CreateMeeting from '../components/CreateMeeting/CreateMeeting.vue';
 import Home from '../components/Home/Home.vue';
 import Login from '../components/Login/Login.vue';
 import Meetups from '../components/Meetups/Meetups.vue';
+import Profile from '../components/Profile/Profile.vue';
 import Register from '../components/Register/Register.vue';
 import SingleMeetup from '../components/SingleMeetup/SingleMeetup.vue';
 Vue.use(VueRouter)
@@ -28,12 +29,17 @@ const routes = [
   {
     path: '/createMeetup',
     name: 'CreateMeeting',
-    component: CreateMeeting
+    component: CreateMeeting,
   },
   {
     path: '/register',
     name: 'register',
     component: Register
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/login',

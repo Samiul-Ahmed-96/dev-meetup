@@ -12,7 +12,7 @@
     ><h2 class="text-center teal darken-4 white--text text-uppercase font-weight-thin">{{item.title}}</h2></v-carousel-item>
   </v-carousel>
         <v-btn outlined large to="meetups" class="teal darken-2 white--text">Explore Meetups</v-btn>
-        <v-btn outlined large to="meetup/new" class="teal darken-2 white--text ml-6">Organize Meetup</v-btn>
+        <v-btn outlined large to="createMeetup" class="teal darken-2 white--text ml-6">Organize Meetup</v-btn>
     </v-container>
 </template>
 

@@ -60,7 +60,6 @@
             type="submit"
             :loading="loading"
             :disabled="loading"
-            color="secondary"
             @click="loader = 'loading'"
             large
             class="mt-4 teal darken-2 white--text"

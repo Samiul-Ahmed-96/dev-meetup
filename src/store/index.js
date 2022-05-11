@@ -115,6 +115,7 @@ export default new Vuex.Store({
         time:payload.time,
         id:'23423414525345235'
       }
+      
       commit('createMeetup',newMeetup);
       alert('Added');
     },
@@ -148,6 +149,7 @@ export default new Vuex.Store({
       signInWithEmailAndPassword(auth, payload.email,payload.password)
       .then((user) => {
         commit('setLoading',false)
+        console.log(user)
         const newUser = {
           id: user.uid,
           email:user.email
