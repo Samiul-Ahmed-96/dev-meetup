@@ -1,8 +1,13 @@
 <template>
     <section class="profile">
-        <v-container>
+        <v-container class="text-center">
             <v-row>
-                <h2>This is profile</h2>
+                <v-col>
+                    <div class="profile-Details">
+                        <v-icon color="white" class="pa-4 rounded-pill mb-4 display-4" style="background:teal">mdi-account</v-icon>
+                        <h3>Email : {{this.$store.state.user.email}}</h3>
+                    </div>
+                </v-col>
             </v-row>
         </v-container>
     </section>

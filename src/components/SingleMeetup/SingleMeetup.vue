@@ -65,7 +65,7 @@
                         <v-toolbar color="teal darken-2" dark>></v-toolbar>
                         <v-card-text>
                           <div class="text-h2 pa-12">
-                            <form @submit.prevent="createMeeting">
+                            <form>
                               <div>
                                 <v-text-field
                                   class="mb-4"
@@ -83,7 +83,7 @@
                                 ></v-text-field>
                               </div>
 
-                              <div>
+                              <!-- <div>
                                 <v-text-field
                                   class="mb-4"
                                   name="imageUrl"
@@ -99,7 +99,7 @@
                                   height="150"
                                   class="rounded"
                                 />
-                              </div>
+                              </div> -->
                               <div>
                                 <v-textarea
                                   v-model="meetUp.description"
@@ -108,7 +108,7 @@
                               </div>
 
                               <v-btn
-                                type="submit"
+                                onclick="updateMeetup"
                                 large
                                 class="mt-4 teal darken-2 white--text"
                                 >Update Meeting</v-btn
@@ -143,6 +143,16 @@ export default {
       return this.$store.getters.loadedMeetup(this.id);
     },
   },
+  methods:{
+    updateMeetup(){
+      this.$store.dispatch('updateMeetupData',{
+        id: this.meetUp.id,
+        title :this.meetUp.title,
+        location:this.meetUp.location,
+        description:this.meetUp.description
+      })
+    }
+  }
 };
 </script>
 

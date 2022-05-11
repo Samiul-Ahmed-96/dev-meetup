@@ -90,6 +90,20 @@ export default new Vuex.Store({
     createMeetup(state,payload){
       state.loadedMeetups.push(payload);
     },
+    updateMeetupData(state,payload){
+      const meetup = state.loadedMeetups.find(meetUp =>{
+        return meetUp.id === payload.id
+      })
+      if(payload.title){
+        meetup.title = payload.title
+      }
+      if(payload.location){
+        meetup.location = payload.loaction
+      }
+      if(payload.description){
+        meetup.description = payload.description
+      }
+    },
     setUser(state,payload){
       state.user = payload;
     },
@@ -118,6 +132,22 @@ export default new Vuex.Store({
       
       commit('createMeetup',newMeetup);
       alert('Added');
+    },
+    updateMeetupData({commit},payload){
+      const updateMeetup = {}
+      if(payload.id){
+        updateMeetup.id = payload.id
+      }
+      if(payload.title){
+        updateMeetup.title = payload.title
+      }
+      if(payload.loaction){
+        updateMeetup.location = payload.location
+      }
+      if(payload.description){
+        updateMeetup.description = payload.description
+      }
+      commit('updateMeetupData' , updateMeetup)
     },
     registerUser({commit},payload){
       commit('setLoading',true)
@@ -152,7 +182,7 @@ export default new Vuex.Store({
         console.log(user)
         const newUser = {
           id: user.uid,
-          email:user.email
+          email:user.user.email
         };
         commit("setUser", newUser);
         // ...
