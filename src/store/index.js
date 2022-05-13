@@ -1,5 +1,5 @@
 import {
-  createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword
+  createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut
 } from "firebase/auth";
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -159,7 +159,8 @@ export default new Vuex.Store({
           commit('setLoading',false)
           const newUser = {
             id: user.uid,
-            email:user.email
+            email:user.email,
+            registeredMeetups : []
           };
           commit("setUser", newUser);
           console.log("user",user)
@@ -182,7 +183,8 @@ export default new Vuex.Store({
         console.log(user)
         const newUser = {
           id: user.uid,
-          email:user.user.email
+          email:user.user.email,
+          registeredMeetups : []
         };
         commit("setUser", newUser);
         // ...
@@ -191,6 +193,12 @@ export default new Vuex.Store({
         commit('setLoading',false)
         commit('setError',error)
       });
+    },
+    SignOutUser({commit}){
+      console.log("logout")
+      const auth = getAuth();
+      signOut(auth)
+      commit('setUser',null)
     }
   },
   modules: {

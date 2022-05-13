@@ -25,7 +25,7 @@
           <v-img :src="item.imageUrl" height="400px"></v-img>
 
           <v-card-title> {{ item.title }} </v-card-title>
-          <v-card-subtitle class="pb-0">{{item.time}}
+          <v-card-subtitle class="pb-0">Time : {{item.time}} pm
           </v-card-subtitle>
           <v-card-actions>
             <v-btn color="teal lighten-2" text :to="`/meetups/${item.id}`">

@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 import Vue from 'vue';
 import App from './App.vue';
+import RegisterDialog from './components/MeetupRegistration/MeetupRegistration.vue';
 import AlertC from './components/Shared/Alert.vue';
 import vuetify from './plugins/vuetify';
 import router from './router';
@@ -9,6 +10,7 @@ import store from './store';
 
 Vue.config.productionTip = false
 Vue.component('app-alert',AlertC);
+Vue.component('register-dialog',RegisterDialog);
 
 
 

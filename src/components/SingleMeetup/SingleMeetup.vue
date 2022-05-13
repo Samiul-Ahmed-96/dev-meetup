@@ -42,6 +42,11 @@
               Meetup date : {{ meetUp.date }}
             </h2>
           </v-card-text>
+          <v-card-text>
+            <h3 class="white--text font-weight-regular">
+              Meetup Time : {{ meetUp.time }}
+            </h3>
+          </v-card-text>
 
           <v-card-actions>
             <v-btn color="white" class="py-2 px-5 ml-2 mb-2" large outlined>
@@ -83,7 +88,7 @@
                                 ></v-text-field>
                               </div>
 
-                              <!-- <div>
+                              <div>
                                 <v-text-field
                                   class="mb-4"
                                   name="imageUrl"
@@ -99,7 +104,7 @@
                                   height="150"
                                   class="rounded"
                                 />
-                              </div> -->
+                              </div>
                               <div>
                                 <v-textarea
                                   v-model="meetUp.description"
@@ -108,7 +113,7 @@
                               </div>
 
                               <v-btn
-                                onclick="updateMeetup"
+                                @click="dialog.value = false"
                                 large
                                 class="mt-4 teal darken-2 white--text"
                                 >Update Meeting</v-btn
